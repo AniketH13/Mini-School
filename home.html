@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard | School Management{% endblock %}
-
 {% block content %}
-<h1>Dashboard</h1>
+<h1>Attendance Records</h1>
 
-<p>Welcome to the Mini School Management System.</p>
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Date</th>
+        <th>Student Name</th>
+        <th>Status</th>
+    </tr>
 
-<section>
-    <h3>Quick Overview</h3>
-    <ul>
-        <li><strong>Total Students:</strong> 120</li>
-        <li><strong>Teachers:</strong> 12</li>
-        <li><strong>Classes:</strong> 6</li>
-    </ul>
-</section>
-
-<section>
-    <h3>Today’s Actions</h3>
-    <ul>
-        <li>✔ Mark Attendance</li>
-        <li>✔ Review Grades</li>
-        <li>✔ Send Parent Announcements</li>
-    </ul>
-</section>
+    {% for row in attendance %}
+    <tr>
+        <td>{{ row["date"] }}</td>
+        <td>{{ row["student_name"] }}</td>
+        <td>{{ row["status"] }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">No records found</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}
